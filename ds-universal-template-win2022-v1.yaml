@@ -1,5 +1,41 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'CloudFormation template to create an S3 bucket with basic configurations'
+Description: 'CloudFormation template to install tableau server in AWS EC2 Windows'
+
+Parameters:
+  # EC2 Parameters
+  InstanceName:
+    Type: String
+    Description: Name tag for the EC2 instance
+    Default: 'tableau-server'
+
+  InstanceType:
+    Type: String
+    Description: EC2 instance type for Tableau Server
+    Default: r5.4xlarge
+    AllowedValues:
+      - r5.4xlarge
+      - r5.8xlarge
+      - r6i.4xlarge
+      - c5.9xlarge
+
+  KeyPairName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: Name of existing EC2 KeyPair for SSH access
+
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+    Description: Select a VPC
+
+  SubnetId:
+    Type: AWS::EC2::Subnet::Id
+    Description: Select a Subnet
+
+  VolumeSizeGB:
+    Type: Number
+    Description: Size of root volume in GB
+    Default: 100
+    MinValue: 50
+    MaxValue: 500
 
 Parameters:
   BucketName:
@@ -35,14 +71,14 @@ Resources:
       PolicyDocument:
         Version: '2012-10-17'
         Statement:
-          - Sid: 'DenyUnEncryptedObjectUploads'
-            Effect: 'Deny'
-            Principal: '*'
-            Action: 's3:PutObject'
+          - Sid: 'AllowGetAndPutObject'
+            Effect: 'Allow'
+            Principal:
+              AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root'
+            Action: 
+              - 's3:GetObject'
+              - 's3:PutObject'
             Resource: !Join ['', [!GetAtt MyS3Bucket.Arn, '/*']]
-            Condition:
-              StringNotEquals:
-                's3:x-amz-server-side-encryption': 'AES256'
 
 Outputs:
   BucketName:
