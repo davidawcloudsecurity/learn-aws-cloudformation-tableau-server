@@ -73,4 +73,8 @@ Once the stack is created successfully:
 - Ensure you have added appropriate security group rules for accessing the EC2 instance (e.g., SSH, RDP).
 
 ---
+### Resource 
+### https://www.tableau.com/support/releases/server/2024.2.9#esdalt
+Windows - https://downloads.tableau.com/esdalt/2024.2.9/TableauServer-64bit-2024-2-9.exe
 
+Linux - https://downloads.tableau.com/esdalt/2024.2.9/tableau-server-2024-2-9.x86_64.rpm
