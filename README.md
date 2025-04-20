@@ -15,7 +15,7 @@ To deploy the `tsm-universal-template-win2022-v1.yaml` CloudFormation template f
 3. **Template Validation**:
    Validate the template to ensure there are no errors:
    ```bash
-   aws cloudformation validate-template --template-body file://ds-universal-template-win2022-v1.yaml
+   aws cloudformation validate-template --template-body file://tsm-universal-template-win2022-v1.yaml
    ```
 
 ---
@@ -25,9 +25,9 @@ To deploy the `tsm-universal-template-win2022-v1.yaml` CloudFormation template f
 #### 1. Upload the Template to an S3 Bucket (Optional)
 If the template is large or you wish to manage it in S3:
    ```bash
-   aws s3 cp ds-universal-template-win2022-v1.yaml s3://<your-s3-bucket-name>/
+   aws s3 cp tsm-universal-template-win2022-v1.yaml s3://<your-s3-bucket-name>/
    ```
-   Note the S3 URL of the template (e.g., `s3://<your-s3-bucket-name>/ds-universal-template-win2022-v1.yaml`).
+   Note the S3 URL of the template (e.g., `s3://<your-s3-bucket-name>/tsm-universal-template-win2022-v1.yaml`).
 
 #### 2. Deploy the Template
 Run the following command to create a CloudFormation stack:
@@ -35,7 +35,7 @@ Run the following command to create a CloudFormation stack:
 If the template is local:
 ```bash
 aws cloudformation create-stack --stack-name tableau-server-stack \
-    --template-body file://ds-universal-template-win2022-v1.yaml \
+    --template-body file://tsm-universal-template-win2022-v1.yaml \
     --parameters ParameterKey=InstanceName,ParameterValue=tableau-server \
                  ParameterKey=InstanceType,ParameterValue=r5.4xlarge \
                  ParameterKey=KeyPairName,ParameterValue=<your-key-pair-name> \
@@ -48,7 +48,7 @@ aws cloudformation create-stack --stack-name tableau-server-stack \
 If the template is in S3:
 ```bash
 aws cloudformation create-stack --stack-name tableau-server-stack \
-    --template-url https://<your-s3-bucket-name>.s3.amazonaws.com/ds-universal-template-win2022-v1.yaml \
+    --template-url https://<your-s3-bucket-name>.s3.amazonaws.com/tsm-universal-template-win2022-v1.yaml \
     --parameters ParameterKey=InstanceName,ParameterValue=tableau-server \
                  ParameterKey=InstanceType,ParameterValue=r5.4xlarge \
                  ParameterKey=KeyPairName,ParameterValue=<your-key-pair-name> \
