@@ -1,7 +1,7 @@
 # learn-aws-cloudformation-tableau-server
 how to deploy tableau server in aws for windows
 
-To deploy the `ds-universal-template-win2022-v1.yaml` CloudFormation template from your repository, follow these steps:
+To deploy the `tsm-universal-template-win2022-v1.yaml` CloudFormation template from your repository, follow these steps:
 
 ### Prerequisites:
 1. **AWS CLI Installed**:
